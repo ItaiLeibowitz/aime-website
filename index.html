@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Music Embassy — Connecting AI music communities worldwide</title>
+<meta name="description" content="The AI Music Embassy (AIME) is a non-profit hub connecting 40+ AI music communities and 20,000+ creators worldwide — so they can share, collaborate, and be heard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/aime-heart.png">
+<style>
+  :root {
+    --ink: #17171f;
+    --ink-soft: #4c4c58;
+    --paper: #faf7f2;
+    --paper-warm: #f4efe6;
+    --card: #ffffff;
+    --night: #0c0c13;
+    --night-soft: #16161f;
+    --orange: #f5900b;
+    --orange-soft: #ffb14e;
+    --blue: #2fa8e8;
+    --blue-soft: #6cc9f5;
+    --line: rgba(23, 23, 31, 0.1);
+    --radius: 18px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; font-weight: 600; }
+  a { color: inherit; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+  .kicker {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .section-title { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+  .section-lede { font-size: 1.08rem; color: var(--ink-soft); max-width: 640px; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(12, 12, 19, 0.97);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: 1080px; margin: 0 auto;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; text-decoration: none; color: #fff; }
+  .nav-logo { height: 30px; width: auto; display: block; flex: none; }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.72); }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    background: #fff; color: var(--ink) !important; padding: 8px 18px;
+    border-radius: 999px; font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--orange-soft); }
+  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: radial-gradient(1100px 600px at 30% 10%, #1d1830 0%, var(--night) 55%);
+    color: #fff;
+    padding: 96px 0 104px;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px; align-items: center;
+  }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
+  .hero h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); margin-bottom: 22px; font-weight: 700; }
+  .hero h1 .hl-orange { color: var(--orange-soft); }
+  .hero h1 .hl-blue { color: var(--blue-soft); }
+  .hero p { font-size: 1.15rem; color: rgba(255,255,255,0.78); max-width: 560px; margin-bottom: 34px; }
+  @media (max-width: 860px) { .hero p { margin-left: auto; margin-right: auto; } }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  @media (max-width: 860px) { .hero-ctas { justify-content: center; } }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600;
+    padding: 13px 26px; border-radius: 999px; font-size: 0.98rem;
+    transition: transform 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: linear-gradient(100deg, var(--orange) 0%, #ffa63a 100%); color: var(--night); }
+  .btn-ghost { border: 1.5px solid rgba(255,255,255,0.35); color: #fff; }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .hero-logo { display: flex; justify-content: center; }
+  .heart-crop { width: min(430px, 82vw); }
+  .heart-crop img {
+    width: 100%; height: auto; display: block;
+    filter: drop-shadow(0 0 46px rgba(47,168,232,0.35)) drop-shadow(0 0 34px rgba(245,144,11,0.22));
+  }
+
+  /* ---------- Stats band ---------- */
+  .stats {
+    background: var(--night-soft); color: #fff; padding: 34px 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .stats-row { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 28px; text-align: center; }
+  .stat b { display: block; font-family: "Fraunces", serif; font-size: 2rem; font-weight: 700; }
+  .stat:nth-child(1) b { color: var(--orange-soft); }
+  .stat:nth-child(2) b { color: var(--blue-soft); }
+  .stat:nth-child(3) b { color: var(--orange-soft); }
+  .stat:nth-child(4) b { color: var(--blue-soft); }
+  .stat span { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+
+  /* ---------- Cards ---------- */
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
+  @media (max-width: 860px) { .cards-3 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 30px 28px;
+  }
+  .card .icon { font-size: 1.6rem; margin-bottom: 14px; display: block; }
+  .card h3 { font-size: 1.22rem; margin-bottom: 10px; }
+  .card p { color: var(--ink-soft); font-size: 0.96rem; }
+  .card-accent-top { border-top: 3px solid var(--orange); }
+  .card-accent-top.blue { border-top-color: var(--blue); }
+
+  /* ---------- Initiatives ---------- */
+  .initiatives { background: var(--paper-warm); }
+  .init-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+  @media (max-width: 860px) { .init-grid { grid-template-columns: 1fr; } }
+  .init-card {
+    background: var(--night); color: #fff; border-radius: var(--radius);
+    padding: 38px 34px; position: relative; overflow: hidden;
+  }
+  .init-card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(420px 220px at 85% -10%, rgba(245,144,11,0.22), transparent 70%);
+  }
+  .init-card.blue::after { background: radial-gradient(420px 220px at 85% -10%, rgba(47,168,232,0.25), transparent 70%); }
+  .init-card .tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 999px; margin-bottom: 18px;
+    background: rgba(245,144,11,0.16); color: var(--orange-soft);
+  }
+  .init-card.blue .tag { background: rgba(47,168,232,0.16); color: var(--blue-soft); }
+  .init-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+  .init-card p { color: rgba(255,255,255,0.75); font-size: 0.97rem; }
+  .init-note { margin-top: 26px; color: var(--ink-soft); font-size: 0.97rem; max-width: 720px; }
+
+  /* ---------- Communities ---------- */
+  .comm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
+  @media (max-width: 960px) { .comm-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .comm-grid { grid-template-columns: 1fr; } }
+  .comm {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 6px;
+    text-decoration: none; transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .comm:hover { border-color: var(--blue); transform: translateY(-2px); }
+  .comm b { font-size: 1rem; }
+  .comm small { color: var(--ink-soft); font-size: 0.86rem; line-height: 1.5; }
+  .comm .lang { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-top: auto; padding-top: 8px; }
+  .comm-more {
+    margin-top: 30px; display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; background: var(--paper-warm);
+    border-radius: var(--radius); padding: 26px 30px;
+  }
+  .comm-more p { color: var(--ink-soft); font-size: 0.98rem; max-width: 560px; }
+  .comm-more b { color: var(--ink); }
+
+  /* ---------- Team ---------- */
+  .team { background: var(--paper-warm); }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--night); color: #fff; text-align: center; }
+  .contact h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 16px; }
+  .contact > .wrap > p { color: rgba(255,255,255,0.75); max-width: 620px; margin: 0 auto 40px; }
+  .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; text-align: left; max-width: 880px; margin: 0 auto 36px; }
+  @media (max-width: 760px) { .contact-cards { grid-template-columns: 1fr; } }
+  .contact-card {
+    background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius); padding: 30px 28px;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
+  }
+  .contact-card h3 { font-size: 1.2rem; }
+  .contact-card p { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 8px; }
+  .contact-card .btn { margin-top: auto; }
+  .contact .email {
+    font-family: "Fraunces", serif; font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 600;
+    color: var(--blue-soft); text-decoration: none;
+  }
+  .contact .email:hover { text-decoration: underline; }
+  .contact .email-line { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+
+  footer { background: var(--night); color: rgba(255,255,255,0.5); padding: 28px 0 40px; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+  footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top" aria-label="AI Music Embassy home">
+      <img class="nav-logo" src="assets/aime-heart-alpha.png" alt="">
+      AI&nbsp;Music&nbsp;Embassy
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#initiatives">Initiatives</a>
+      <a href="#communities">Communities</a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Where the world's <span class="hl-orange">AI music communities</span> <span class="hl-blue">come together</span></h1>
+      <p>The AI Music Embassy (AIME) is a non-profit hub connecting the leaders of AI music communities worldwide — so creators can share, collaborate, be heard, and shape the future of music together.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#communities">Explore the communities</a>
+        <a class="btn btn-ghost" href="#contact">Partner with us</a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <div class="heart-crop">
+        <img src="assets/aime-heart-alpha.png" alt="AI Music Embassy logo: a neon heart formed by an ear and a bass clef">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap stats-row">
+    <div class="stat"><b>40+</b><span>member communities</span></div>
+    <div class="stat"><b>20,000+</b><span>creators worldwide</span></div>
+    <div class="stat"><b>10+</b><span>languages &amp; countries</span></div>
+    <div class="stat"><b>100%</b><span>volunteer-run, non-profit</span></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <span class="kicker">Who we are</span>
+    <h2 class="section-title">A new wave of musicians needs a place at the table</h2>
+    <p class="section-lede">Millions of people now make music with AI tools — the largest new wave of creators music has ever seen. The most engaged among them gather in community-run spaces: Discord servers, song contests, streaming showcases, radio stations, and artist collectives, run almost entirely on volunteer time. AIME connects the leaders of these communities so they can support each other and speak with one voice.</p>
+    <div class="cards-3">
+      <div class="card card-accent-top">
+        <span class="icon">🤝</span>
+        <h3>Connect community leaders</h3>
+        <p>We bring together the people who run AI music communities across the globe — to collaborate, share what works, and support each other in building thriving, healthy spaces.</p>
+      </div>
+      <div class="card card-accent-top blue">
+        <span class="icon">🛠️</span>
+        <h3>Build shared projects</h3>
+        <p>We work on things that benefit every community: helping people find the right communities and events, shared calendars and tools, and initiatives no single community could run alone.</p>
+      </div>
+      <div class="card card-accent-top">
+        <span class="icon">📣</span>
+        <h3>Amplify community voices</h3>
+        <p>We represent what matters to AI musicians in conversations with AI companies, streaming platforms, the music industry, and policymakers — so decisions about AI music include the people making it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="initiatives" id="initiatives">
+  <div class="wrap">
+    <span class="kicker">What we're doing</span>
+    <h2 class="section-title">Our flagship initiatives</h2>
+    <div class="init-grid">
+      <div class="init-card">
+        <span class="tag">Embassy Nights</span>
+        <h3>Community leaders, meet the industry</h3>
+        <p>Embassy Nights bring the leaders of AI music communities into direct, candid conversation with the people shaping the AI music industry — from product teams at major AI music platforms to voices across the wider music world. Recent sessions have gathered 20+ leaders representing tens of thousands of creators.</p>
+      </div>
+      <div class="init-card blue">
+        <span class="tag">Voice of the AI Artist</span>
+        <h3>What AI musicians actually think — in their own words</h3>
+        <p>Nearly every report about AI music talks <em>about</em> AI artists rather than <em>to</em> them. We're building the first-ever Voice of the AI Artist report: gathering artists' own experiences and views on craft, tools, labeling, ownership, and platforms — and carrying them to the companies, industry bodies, and policymakers deciding their future.</p>
+      </div>
+    </div>
+    <p class="init-note">Alongside these, AIME is in ongoing conversations with companies across the music and AI space, runs meetups and affiliated community events, and maintains a growing directory of AI music communities worldwide.</p>
+  </div>
+</section>
+
+<section id="communities">
+  <div class="wrap">
+    <span class="kicker">The network</span>
+    <h2 class="section-title">Featured member communities</h2>
+    <p class="section-lede">A few of the communities in the AIME network — each independently run, each with its own culture, genre, and language. All are open to new members.</p>
+    <div class="comm-grid">
+      <a class="comm" href="https://discord.gg/StorytellerZ" target="_blank" rel="noopener">
+        <b>StorytellerZ</b>
+        <small>Germany's largest AI music community — events, battles, and feedback sessions for 1,000+ members.</small>
+        <span class="lang">🇩🇪 German</span>
+      </a>
+      <a class="comm" href="https://discord.gg/Vj7c7yf4DR" target="_blank" rel="noopener">
+        <b>AIPLAY</b>
+        <small>Community-driven platform for AI music with listening parties, showcases, and 50,000+ song submissions.</small>
+        <span class="lang">🌍 English</span>
+      </a>
+      <div class="comm">
+        <b>SSC — the Song Contest</b>
+        <small>The largest AI song contest in the world: hundreds of artists from 50+ countries make music, listen, vote, and celebrate together, Eurovision-style.</small>
+        <span class="lang">🌍 Global</span>
+      </div>
+      <a class="comm" href="https://discord.gg/midnighttee" target="_blank" rel="noopener">
+        <b>Midnight Tee</b>
+        <small>Chill late-night vibes: creator interviews, weekly music streams, and listening parties in voice chat.</small>
+        <span class="lang">🌍 English</span>
+      </a>
+      <a class="comm" href="https://discord.gg/6hWJFMkuv5" target="_blank" rel="noopener">
+        <b>The AI Umbrella</b>
+        <small>A chill collaboration space helping AI musicians get their music heard beyond the AI-only scene.</small>
+        <span class="lang">🌍 English</span>
+      </a>
+      <a class="comm" href="https://discord.gg/dyMuVGx2ff" target="_blank" rel="noopener">
+        <b>K-MOB</b>
+        <small>AI K-pop and pop community for creators and fans — music and video collabs, plus the MobVision contest.</small>
+        <span class="lang">🌍 English</span>
+      </a>
+      <a class="comm" href="https://discord.gg/rzU4QCxy3E" target="_blank" rel="noopener">
+        <b>Sound Garden</b>
+        <small>A supportive home for beginner musicians: find your style, sharpen your skills, and bring ideas to life.</small>
+        <span class="lang">🌍 English</span>
+      </a>
+      <a class="comm" href="https://discord.gg/tra-studio" target="_blank" rel="noopener">
+        <b>TRA Studio</b>
+        <small>The True Rock Alliance: traditional musicians uploading real instrument stems to craft AI rock &amp; metal.</small>
+        <span class="lang">🎸 Rock &amp; Metal</span>
+      </a>
+      <a class="comm" href="https://discord.gg/D7N944qaRc" target="_blank" rel="noopener">
+        <b>MobVision Song Contest</b>
+        <small>Eurovision-inspired AI song contest with lore, visuals, prizes, and community-run national finals.</small>
+        <span class="lang">🌍 Global</span>
+      </a>
+      <a class="comm" href="https://discord.gg/EPbyAqp2zF" target="_blank" rel="noopener">
+        <b>AIDIY</b>
+        <small>A wholesome AI music community around weekly features, interviews, live streams, and news.</small>
+        <span class="lang">🌍 English</span>
+      </a>
+      <a class="comm" href="https://discord.gg/JQXWGuhq" target="_blank" rel="noopener">
+        <b>Coletivo SomBR</b>
+        <small>Brazil's Portuguese-speaking AI music community.</small>
+        <span class="lang">🇧🇷 Portuguese</span>
+      </a>
+      <a class="comm" href="https://discord.gg/fbrt6ftkum" target="_blank" rel="noopener">
+        <b>Cyber Metal Radio</b>
+        <small>The world's first AI metal radio — relentless AI metal, 24/7, with open song submissions.</small>
+        <span class="lang">🤘 Metal</span>
+      </a>
+    </div>
+    <div class="comm-more">
+      <p><b>…and 30+ more communities</b> across genres, languages, and platforms. Lead an AI music community? We'd love to connect yours to the network.</p>
+      <a class="btn btn-dark" href="https://forms.gle/q57iiG9o5HM37R346" target="_blank" rel="noopener">Join the network</a>
+    </div>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="wrap">
+    <span class="kicker">The people</span>
+    <h2 class="section-title">Built by the communities, for the communities</h2>
+    <p class="section-lede">AIME is carried by a volunteer circle of community founders, contest organizers, streamers, and artists from around the world — people who each lead communities of their own and lend their time to the network. No staff, no offices: just the people who run the AI music world's gathering places, working together.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>If the future of AI music matters to you, it matters to us that you hear from the people making it. Here's how to plug in.</p>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <h3>🏢 Companies, press &amp; policymakers</h3>
+        <p>Join an Embassy Night to talk directly with the leaders of communities representing 20,000+ creators. Get honest feedback on your product or policy, hear what AI musicians actually think, or reach engaged creators for your next launch, contest, or story.</p>
+        <a class="btn btn-primary" href="mailto:hello@aimusicembassy.org?subject=Partnering%20with%20AIME" target="_blank" rel="noopener">Start a conversation</a>
+      </div>
+      <div class="contact-card">
+        <h3>🎧 Community leaders</h3>
+        <p>Run an AI music community — a Discord, a contest, a stream, a collective? Join the network: swap knowledge with fellow leaders, take part in shared projects and events, and add your community's voice to the conversations shaping the space.</p>
+        <a class="btn btn-primary" href="https://forms.gle/q57iiG9o5HM37R346" target="_blank" rel="noopener">Connect your community</a>
+      </div>
+    </div>
+    <p class="email-line">Or simply write to us — <a class="email" href="mailto:hello@aimusicembassy.org">hello@aimusicembassy.org</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 AI Music Embassy · A non-profit initiative</span>
+    <span><a href="mailto:hello@aimusicembassy.org">hello@aimusicembassy.org</a> · <a href="#top">aimusicembassy.org</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
