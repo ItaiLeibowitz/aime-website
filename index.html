@@ -404,5 +404,20 @@
   </div>
 </footer>
 
+<script>
+  // Shuffle the featured communities on every load so no community is
+  // consistently listed first — order is not a ranking.
+  (function () {
+    var grid = document.querySelector('.comm-grid');
+    if (!grid) return;
+    var cards = Array.prototype.slice.call(grid.children);
+    for (var i = cards.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = cards[i]; cards[i] = cards[j]; cards[j] = t;
+    }
+    cards.forEach(function (c) { grid.appendChild(c); });
+  })();
+</script>
+
 </body>
 </html>
