@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AIME at Music Tectonics</title>
+<meta name="description" content="Welcome from the AI Music Embassy — meet the real people behind AI music. Links for Music Tectonics 2026 attendees.">
+<meta name="theme-color" content="#120c33">
+<meta property="og:title" content="AIME at Music Tectonics 2026">
+<meta property="og:description" content="Meet the real people behind AI music.">
+<meta property="og:image" content="https://aimusicembassy.org/assets/aime-heart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/aime-heart.png">
+<style>
+  :root {
+    --space: #0d0a26;
+    --space-2: #1a1258;
+    --magenta: #c42a8f;
+    --cyan: #33c6f4;
+    --orange: #f5900b;
+    --orange-soft: #ffb14e;
+    --blue-soft: #6cc9f5;
+    --ink: #17171f;
+    --ink-soft: #55556a;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background: var(--space);
+    color: #fff;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+
+  /* ---------- Cosmic backdrop (nod to the Music Tectonics frame) ---------- */
+  .sky {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(520px 420px at 50% 112%, rgba(196,42,143,0.55) 0%, rgba(139,47,214,0.25) 45%, transparent 72%),
+      radial-gradient(700px 500px at 85% 0%, rgba(51,198,244,0.16) 0%, transparent 60%),
+      linear-gradient(180deg, #0b0822 0%, var(--space-2) 58%, #2a136b 100%);
+  }
+  .sky::after {
+    /* glowing planet horizon at the bottom */
+    content: ""; position: absolute; left: 50%; bottom: -330px;
+    width: 560px; height: 420px; transform: translateX(-50%);
+    border-radius: 50%;
+    border-top: 2px solid rgba(51,198,244,0.85);
+    box-shadow: 0 -10px 60px rgba(51,198,244,0.35), inset 0 20px 80px rgba(196,42,143,0.35);
+  }
+  .star { position: absolute; color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1; }
+  .dot { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.55); }
+  .planet {
+    position: absolute; border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--magenta) 50%, var(--cyan) 100%);
+    box-shadow: 0 0 24px rgba(196,42,143,0.35);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .star { animation: twinkle 3.5s ease-in-out infinite; }
+    .star:nth-child(2n) { animation-delay: 1.2s; }
+    .star:nth-child(3n) { animation-delay: 2.1s; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.25; } }
+  }
+
+  .page { max-width: 520px; margin: 0 auto; padding: 36px 16px 64px; }
+
+  /* ---------- Header ---------- */
+  header { text-align: center; margin-bottom: 30px; }
+  .logo { width: 104px; height: auto; display: block; margin: 0 auto 18px;
+    filter: drop-shadow(0 0 26px rgba(51,198,244,0.4)) drop-shadow(0 0 18px rgba(245,144,11,0.25)); }
+  .eyebrow {
+    font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.8rem;
+    color: rgba(255,255,255,0.7); margin-bottom: 8px;
+  }
+  h1 {
+    font-family: "Inter", sans-serif; font-weight: 800; text-transform: uppercase;
+    font-size: clamp(2rem, 9vw, 2.7rem); line-height: 1.02; letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+  h1 span {
+    background: linear-gradient(90deg, var(--orange-soft), #ff6fb5 50%, var(--blue-soft));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 420px; margin: 0 auto; }
+  .lede strong { color: #fff; font-weight: 600; }
+
+  /* ---------- Link cards ---------- */
+  .links { display: flex; flex-direction: column; gap: 14px; }
+  .link {
+    display: flex; gap: 14px; align-items: flex-start;
+    text-decoration: none; color: var(--ink);
+    background: var(--card); border-radius: 20px; padding: 16px 16px 16px 14px;
+    box-shadow: 0 10px 30px rgba(5,3,20,0.35);
+    position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .link:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(5,3,20,0.45); }
+  .link:active { transform: scale(0.985); }
+  .link:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+  .ico {
+    flex: none; width: 52px; height: 52px; border-radius: 14px;
+    display: grid; place-items: center; font-size: 1.6rem;
+  }
+  .ico img { width: 40px; height: 40px; object-fit: contain; }
+  .ico-humans { background: linear-gradient(135deg, #feda75, #fa7e1e 30%, #d62976 60%, #962fbf 85%, #4f5bd5); }
+  .ico-zin { background: linear-gradient(135deg, var(--orange), #ff6a3d); color: #fff; font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 1.7rem; }
+  .ico-aime { background: #0c0c13; }
+  .body { flex: 1; min-width: 0; }
+  .link h2 { font-size: 1.08rem; font-weight: 700; line-height: 1.25; margin-bottom: 2px; }
+  .where { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--magenta); margin-bottom: 6px; }
+  .link p { font-size: 0.92rem; color: var(--ink-soft); }
+  .arrow { flex: none; align-self: center; font-size: 1.2rem; color: #b6b6c6; transition: transform 0.15s ease; }
+  .link:hover .arrow { transform: translateX(3px); color: var(--ink); }
+
+  /* Featured video card */
+  .link.video { flex-direction: column; align-items: stretch; gap: 0; padding: 0; overflow: hidden; }
+  .link.video:hover, .link.video:active { transform: none; }
+  .player {
+    position: relative; aspect-ratio: 16 / 9;
+    background: #000 url("https://i.ytimg.com/vi/3QUoIep7zaY/maxresdefault.jpg") center / cover;
+  }
+  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .fun {
+    display: inline-block; vertical-align: 2px; margin-left: 6px;
+    background: var(--orange); color: var(--ink); font-size: 0.64rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+  }
+  .video .row { padding: 16px 16px 18px; }
+  .yt-link {
+    display: inline-block; margin-top: 10px; font-size: 0.88rem; font-weight: 600;
+    color: var(--magenta); text-decoration: none;
+  }
+  .yt-link:hover { text-decoration: underline; }
+
+  /* ---------- Footer ---------- */
+  .closing {
+    margin-top: 30px; text-align: center; padding: 22px 18px;
+    border-radius: 20px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+  }
+  .closing h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 1.25rem; margin-bottom: 6px; }
+  .closing p { font-size: 0.93rem; color: rgba(255,255,255,0.75); }
+  .closing a { color: var(--orange-soft); font-weight: 600; text-decoration: none; }
+  .closing a:hover { text-decoration: underline; }
+  footer { text-align: center; margin-top: 26px; font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+  footer a { text-decoration: none; color: rgba(255,255,255,0.6); }
+</style>
+</head>
+<body>
+
+<div class="sky" aria-hidden="true">
+  <span class="star" style="top:8%;left:9%">✦</span>
+  <span class="star" style="top:14%;right:12%;font-size:18px">✦</span>
+  <span class="star" style="top:38%;left:4%;font-size:11px">✦</span>
+  <span class="star" style="top:56%;right:6%">✦</span>
+  <span class="star" style="top:78%;left:12%;font-size:20px">✦</span>
+  <span class="star" style="top:88%;right:18%;font-size:12px">✦</span>
+  <span class="dot" style="top:6%;left:78%"></span>
+  <span class="dot" style="top:47%;right:20%"></span>
+  <span class="dot" style="top:70%;left:30%"></span>
+  <span class="dot" style="top:92%;left:52%"></span>
+  <span class="planet" style="top:4%;left:-14px;width:44px;height:44px"></span>
+  <span class="planet" style="top:74%;right:-22px;width:70px;height:70px"></span>
+</div>
+
+<main class="page">
+  <header>
+    <img class="logo" src="../assets/aime-heart-alpha.png" alt="AI Music Embassy">
+    <p class="eyebrow">Great to meet you at</p>
+    <h1>Music <span>Tectonics</span></h1>
+    <p class="lede">We're the <strong>AI Music Embassy</strong>, connecting the leaders of AI music communities and reaching 20,000+ creators. <strong>Meet the real people behind AI music</strong>: who they are, what they make, and why.</p>
+  </header>
+
+  <nav class="links" aria-label="Links">
+    <a class="link" href="https://www.instagram.com/humansofaimusic/" target="_blank" rel="noopener">
+      <span class="ico ico-humans" aria-hidden="true">🎶</span>
+      <div class="body">
+        <h2>Humans of AI Music</h2>
+        <div class="where">Instagram</div>
+        <p>Portraits and stories of the people making music with AI — their lives, their reasons, and a song, in their own words.</p>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="link" href="https://zinstrel.substack.com/" target="_blank" rel="noopener">
+      <span class="ico ico-zin" aria-hidden="true">Z</span>
+      <div class="body">
+        <h2>Zinstrel</h2>
+        <div class="where">Substack newsletter</div>
+        <p>AI music culture &amp; analysis — the artists, tools, and cultural shifts shaping AI-powered music, plus curated discovery of the best tracks.</p>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="link" href="../">
+      <span class="ico ico-aime" aria-hidden="true"><img src="../assets/aime-heart-alpha.png" alt=""></span>
+      <div class="body">
+        <h2>AI Music Embassy</h2>
+        <div class="where">aimusicembassy.org</div>
+        <p>Who we are, the communities in our network, and how industry, press, and community leaders can connect with us.</p>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+
+    <div class="link video">
+      <div class="player">
+        <iframe id="ssc-reel" title="SSC8 highlight reel" loading="lazy"
+          src="https://www.youtube-nocookie.com/embed/3QUoIep7zaY?playsinline=1&amp;rel=0"
+          allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="row">
+        <div class="body">
+          <h2>SSC8 highlight reel <span class="fun">Super fun ✨</span></h2>
+          <p>Check out an example of what our communities do! SSC is the world's largest AI song contest: hundreds of artists from 50+ countries writing, voting, and celebrating together, Eurovision-style.</p>
+          <a class="yt-link" href="https://www.youtube.com/watch?v=3QUoIep7zaY" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="closing">
+    <h3>Let's talk 👋</h3>
+    <p>Building in AI music, writing about it, or running a community?<br>
+      <a href="mailto:hello@aimusicembassy.org">hello@aimusicembassy.org</a></p>
+  </section>
+
+  <footer>
+    <a href="../">AI Music Embassy</a> · An independent community initiative
+  </footer>
+</main>
+
+</body>
+</html>
