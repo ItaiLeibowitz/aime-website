@@ -159,6 +159,9 @@
     background: linear-gradient(100deg, var(--blue) 0%, var(--blue-soft) 100%);
     color: var(--night);
   }
+  .init-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .init-actions .btn { margin-top: 0; }
+  .init-card .btn.btn-ghost { background: transparent; border: 1.5px solid rgba(255,255,255,0.35); color: #fff; }
   .init-note { margin-top: 26px; color: var(--ink-soft); font-size: 0.97rem; max-width: 720px; }
 
   /* ---------- Communities ---------- */
@@ -293,7 +296,10 @@
         <span class="tag">Humans of AI Music</span>
         <h3>Real people. Real stories. One song at a time 🎶</h3>
         <p>Behind every AI-assisted track is a person — with a life, a reason for making music, and a story worth hearing. Humans of AI Music shares the real stories of the people in our communities, in their own words, one song at a time.</p>
-        <a class="btn" href="https://www.instagram.com/humansofaimusic" target="_blank" rel="noopener">Follow @humansofaimusic on Instagram</a>
+        <div class="init-actions">
+          <a class="btn" href="https://www.instagram.com/humansofaimusic" target="_blank" rel="noopener">Follow @humansofaimusic on Instagram</a>
+          <a class="btn btn-ghost" href="https://humans.aimusicembassy.org">Add your story</a>
+        </div>
       </div>
     </div>
     <p class="init-note">Alongside these, AIME is in ongoing conversations with companies across the music and AI space, runs meetups and affiliated community events, and maintains a growing directory of AI music communities worldwide.</p>
