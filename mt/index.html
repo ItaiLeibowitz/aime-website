@@ -90,6 +90,9 @@
   }
   .lede { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 420px; margin: 0 auto; }
   .lede strong { color: #fff; font-weight: 600; }
+  .reach { margin-top: 16px; font-size: 1.05rem; font-weight: 700; }
+  .reach a { color: var(--orange-soft); text-decoration: none; }
+  .reach a:hover { text-decoration: underline; }
 
   /* ---------- Link cards ---------- */
   .links { display: flex; flex-direction: column; gap: 14px; }
@@ -114,6 +117,11 @@
   .ico-humans img { width: 100%; height: 100%; }
   .ico-zin { background: #f1f4fb; }
   .ico-zin img { width: 44px; height: 44px; }
+  .link .gift {
+    margin-top: 10px; padding: 8px 10px; border-radius: 10px;
+    background: #fff4e3; color: var(--ink); font-size: 0.86rem; line-height: 1.4;
+  }
+  .link .gift b { color: #b85f00; }
   .ico-aime { background: #0c0c13; }
   .body { flex: 1; min-width: 0; }
   .link h2 { font-size: 1.08rem; font-weight: 700; line-height: 1.25; margin-bottom: 2px; }
@@ -144,6 +152,7 @@
 
   /* ---------- Footer ---------- */
   .closing {
+    scroll-margin-top: 16px;
     margin-top: 30px; text-align: center; padding: 22px 18px;
     border-radius: 20px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
   }
@@ -178,6 +187,7 @@
     <p class="eyebrow">Great to meet you at</p>
     <h1>Music <span>Tectonics</span></h1>
     <p class="lede">We're the <strong>AI Music Embassy</strong>, connecting the leaders of AI music communities and reaching 20,000+ creators. <strong>Meet the real people behind AI music</strong>: who they are, what they make, and why.</p>
+    <p class="reach"><a href="#contact">Want to reach our creators? Connect with us below ↓</a></p>
   </header>
 
   <nav class="links" aria-label="Links">
@@ -197,6 +207,7 @@
         <h2>Zinstrel</h2>
         <div class="where">Substack newsletter</div>
         <p>AI music culture &amp; analysis — the artists, tools, and cultural shifts shaping AI-powered music, plus curated discovery of the best tracks.</p>
+        <p class="gift"><b>🎁 Music Tectonics gift:</b> 3 months free on any plan. Sign up to activate.</p>
       </div>
       <span class="arrow" aria-hidden="true">→</span>
     </a>
@@ -227,9 +238,9 @@
     </div>
   </nav>
 
-  <section class="closing">
-    <h3>Let's talk 👋</h3>
-    <p>Building in AI music, writing about it, or running a community?<br>
+  <section class="closing" id="contact">
+    <h3>Want to reach 20,000+ AI-native creators?</h3>
+    <p>Our communities bring together some of the most experienced AI-native music makers anywhere. If you're building for them, writing about them, or want to work with them, let's talk 👋<br>
       <a href="mailto:hello@aimusicembassy.org">hello@aimusicembassy.org</a></p>
   </section>
 
